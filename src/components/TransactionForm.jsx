@@ -12,6 +12,7 @@ const TransactionForm = () => {
   const navigate = useNavigate();
 
   const [formValues, setFormValues] = useState({
+    id: crypto.randomUUID(),
     transactionTypes: "Deposite",
     amount: "",
     currency: "USD",
@@ -31,6 +32,7 @@ const TransactionForm = () => {
     e.preventDefault();
     console.log(formValues, "formValues");
     dispatch(submitTransaction(formValues));
+    navigate("/");
   };
 
   return (
@@ -138,6 +140,7 @@ const TransactionForm = () => {
               required
               name="Description"
               id="Description"
+              placeholder="Enter description"
               value={formValues.Description}
               onChange={handleOnChange}
               className="outline-none border border-gray-400 rounded p-2 text-[1.1rem] dark:text-black text-white"

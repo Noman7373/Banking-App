@@ -1,24 +1,32 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-let allTransactionS = JSON.parse(localStorage.getItem("BankStore")) || [];
+let allTransaction = [];
+
+try {
+  allTransaction = JSON.parse(localStorage.getItem("BankStore")) || [];
+} catch (error) {
+  console.error("Error parsing data from localStorage:", error);
+}
+
 const storeSlice = createSlice({
   name: "BankStore",
   initialState: {
-    bankTransaction: allTransactionS,
+    bankTransaction: allTransaction,
   },
 
   reducers: {
     submitTransaction(state, action) {
-      let userTransation = action.payload;
-      let existTransaction = state.bankTransaction.find(
-        (payment) => payment.title === userTransation.title
-      );
-      if (existTransaction) {
-        existTransaction.amount += userTransation.amount;
-      } else {
-        state.bankTransaction.push({ ...userTransation });
+      let userTransaction = action.payload;
+
+      state.bankTransaction.push({ ...userTransaction });
+      try {
+        localStorage.setItem(
+          "BankStore",
+          JSON.stringify(state.bankTransaction)
+        );
+      } catch (error) {
+        console.error("Error saving to localStorage:", error);
       }
-      localStorage.setItem("BankStore", JSON.stringify(state.bankTransaction));
     },
   },
 });
