@@ -51,7 +51,7 @@ const Navbar = () => {
           onClick={toogleMode}
         >
           {mode ? (
-            <MdSunny size={25} className="text-yellow-200" />
+            <MdSunny size={25} className="text-yellow-900" />
           ) : (
             <IoMoon size={25} className="text-black" />
           )}
