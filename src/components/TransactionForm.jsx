@@ -1,11 +1,113 @@
-import React from 'react'
+import React from "react";
+import { BsCalendarDate } from "react-icons/bs";
+import { FaPenFancy } from "react-icons/fa";
+import { MdCurrencyExchange } from "react-icons/md";
+import { TfiText, TfiWorld } from "react-icons/tfi";
 
 const TransactionForm = () => {
   return (
-    <div>
-      
-    </div>
-  )
-}
+    <>
+      <div className="flex justify-center items-center mt-2">
+        <h1 className="text-[2rem]">Transaction Form</h1>
+      </div>
+      <div className="flex items-center justify-center mt-4">
+        <form className="flex flex-col gap-4 w-[35rem] mt-3">
+          <div className="grid grid-cols-2 gap-3 p-1">
+            <div className="flex flex-col gap-2">
+              <label className="flex items-center gap-2" htmlFor="type">
+                {" "}
+                <span>
+                  <TfiText size={15} />
+                </span>{" "}
+                Type
+              </label>
+              <select
+                name="cetagory"
+                id="cetagory"
+                className="outline-none border border-gray-400 rounded px-2 py-[0.8rem] cursor-pointer hover:border-blue-500"
+              >
+                <option value="Deposite">Deposite</option>
+                <option value="Withdrawal">Withdrawal</option>
+                <option value="Transfer">Transfer</option>
+              </select>
+            </div>
+            <div className="flex flex-col gap-2">
+              <label className="flex items-center gap-2" htmlFor="amount">
+                {" "}
+                <span>
+                  <MdCurrencyExchange size={15} />
+                </span>{" "}
+                # Amount
+              </label>
+              <input
+                type="number"
+                placeholder="Enter Amount"
+                id="amount"
+                name="amount"
+                className="outline-none border border-gray-400 rounded p-2 text-[1.1rem]"
+              />
+            </div>
+          </div>
 
-export default TransactionForm
+          <div className="grid grid-cols-2 gap-3 p-1">
+            <div className="flex flex-col gap-2">
+              <label className="flex items-center gap-2" htmlFor="currency">
+                {" "}
+                <span>
+                  <TfiWorld size={15} />
+                </span>{" "}
+                Currency
+              </label>
+              <select
+                name="currency"
+                id="currency"
+                className="outline-none border border-gray-400 rounded px-2 py-[0.8rem] cursor-pointer hover:border-blue-500"
+              >
+                <option value="USD">USD</option>
+                <option value="BHD">BHD</option>
+                <option value="EUR">EUR</option>
+              </select>
+            </div>
+            <div className="flex flex-col gap-2">
+              <label className="flex items-center gap-2" htmlFor="date">
+                {" "}
+                <span>
+                  <BsCalendarDate size={15} />
+                </span>{" "}
+                Date
+              </label>
+              <input
+                type="date" // Correct input type for date
+                id="date"
+                name="date"
+                className="outline-none border border-gray-400 rounded p-2 text-[1.1rem]"
+              />
+            </div>
+          </div>
+          <div className="flex flex-col gap-1">
+            <label className="flex items-center gap-2" htmlFor="description">
+              {" "}
+              <span>
+                <FaPenFancy size={15} />
+              </span>{" "}
+              Description
+            </label>
+
+            <textarea
+              name="description"
+              id="description"
+              className="outline-none border border-gray-400 rounded p-2 text-[1.1rem]"
+            ></textarea>
+          </div>
+          <div className="flex justify-center">
+            <button className="p-3 w-[10rem] rounded bg-blue-500  hover:bg-transparent hover:border-[1px] border-blue-500 ">
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
+    </>
+  );
+};
+
+export default TransactionForm;

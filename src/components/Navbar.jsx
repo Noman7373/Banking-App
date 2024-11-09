@@ -1,13 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IoMoon } from "react-icons/io5";
 import { MdSunny } from "react-icons/md";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
-  const [mode, setMode] = useState(false);
+  const savedMode = localStorage.getItem("darkMode") === "true";
+  const [mode, setMode] = useState(savedMode);
 
-  function handleMode() {
-    setMode((prev) => !prev);
+  useEffect(() => {
+    if (mode) {
+      document.body.classList.add("dark");
+    } else {
+      document.body.classList.remove("dark");
+    }
+  }, [mode]);
+
+  function toogleMode() {
+    setMode((prev) => {
+      const newMode = !prev;
+      localStorage.setItem("darkMode", newMode.toString());
+      return newMode;
+    });
   }
 
   return (
@@ -15,7 +28,7 @@ const Navbar = () => {
       <nav className="flex justify-between items-center px-5 py-4">
         <h1 className="text-[2rem] text-blue-500 font-bold">Banking App</h1>
 
-        <div className="flex justify-between items-center gap-8 text-[1.1rem] font-serif">
+        <div className="md:flex justify-between items-center gap-8 text-[1.1rem] sm:hidden xs:hidden">
           <Link to="/">
             <li className="list-none  hover:text-blue-700">Home</li>
           </Link>
@@ -35,7 +48,7 @@ const Navbar = () => {
         </div>
         <div
           className="rounded-[50%] bg-slate-300 flex justify-center items-center p-2 cursor-pointer"
-          onClick={handleMode}
+          onClick={toogleMode}
         >
           {mode ? (
             <MdSunny size={25} className="text-yellow-200" />

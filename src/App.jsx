@@ -8,15 +8,12 @@ import History from "./components/History";
 function App() {
   const router = createBrowserRouter([
     {
-      path: "/",
+      path: "/", // This is the base path
       element: <Applayout />,
       children: [
         {
-          element: (
-            <>
-              <Dashboard />
-            </>
-          ),
+          path: "/", // Set the default path for Dashboard
+          element: <Dashboard />,
         },
         {
           path: "/transaction-form",
@@ -33,10 +30,15 @@ function App() {
       ],
     },
   ]);
+
   return (
-    <>
-      <RouterProvider router={router} />
-    </>
+    <RouterProvider
+      router={router}
+      future={{
+        v7_startTransition: true,
+        v7_relativeSplatPath: true, // Opt-in to the relative splat path behavior
+      }}
+    />
   );
 }
 
