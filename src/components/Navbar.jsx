@@ -3,7 +3,7 @@ import { CgMenuGridO } from "react-icons/cg";
 import { IoMoon } from "react-icons/io5";
 import { MdSunny } from "react-icons/md";
 import { TfiClose } from "react-icons/tfi";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
   const savedMode = localStorage.getItem("darkMode") === "true";
@@ -13,8 +13,10 @@ const Navbar = () => {
   useEffect(() => {
     if (mode) {
       document.body.classList.add("dark");
+      document.getElementById("navBar").classList.add("dark");
     } else {
       document.body.classList.remove("dark");
+      document.getElementById("navBar").classList.remove("dark");
     }
   }, [mode]);
 
@@ -36,22 +38,22 @@ const Navbar = () => {
         <h1 className="text-[2rem] text-blue-500 font-bold">Banking App</h1>
 
         <div className="md:flex justify-between items-center gap-8 text-[1.1rem] sm:hidden xs:hidden">
-          <Link to="/">
+          <NavLink to="/">
             <li className="list-none  hover:text-blue-700">Home</li>
-          </Link>
-          <Link to="/transaction-form">
+          </NavLink>
+          <NavLink to="/transaction-form">
             <li className="list-none  hover:text-blue-700">
               Transaction Forms
             </li>
-          </Link>
-          <Link to="/accountOverview">
+          </NavLink>
+          <NavLink to="/accountOverview">
             <li className="list-none  hover:text-blue-700">Account Overview</li>
-          </Link>
-          <Link to="/transaction-history">
+          </NavLink>
+          <NavLink to="/transaction-history">
             <li className="list-none  hover:text-blue-700">
               Transaction History
             </li>
-          </Link>
+          </NavLink>
         </div>
         <div className="flex justify-between items-center gap-2">
           <div
@@ -76,13 +78,33 @@ const Navbar = () => {
       {/* Menu for Small Devices */}
       <hr />
       <nav
+        id="navBar"
         className={`${
           menu
-            ? "md:hidden xs:flex flex-col absolute left-0 bg-[#FEF9F2] gap-4 py-3 z-10 px-3 h-[calc(100vh-82px)] w-[18rem] transition-all duration-500 ease-in-out rounded dark:bg-[#11001f]"
-            : "md:hidden xs:flex flex-col absolute left-[-100%] bg-[#FEF9F2] gap-4 py-3 z-10 px-3 h-[calc(100vh-82px)] w-[18rem] transition-all duration-500 ease-in-out dark:bg-[#11001f]"
+            ? "md:hidden xs:flex flex-col absolute left-0 bg-[#5d6e7f] dark:text-white gap-4 py-3 px-3 h-[calc(100vh-82px)] w-[18rem] transition-all duration-500 ease-in-out rounded"
+            : "md:hidden xs:flex flex-col absolute left-[-100%] dark:text-white gap-4 py-3 z-10 px-3 h-[calc(100vh-82px)] w-[18rem] transition-all duration-500 ease-in-out "
         }`}
       >
-        <li className="list-none cursor-pointer px-3 py-1">Home</li>
+        <NavLink to="/" onClick={handleMenuBar}>
+          <li className="list-none cursor-pointer px-3 py-2 rounded-xl border border-black mt-4 hover:bg-blue-500">
+            Home
+          </li>
+        </NavLink>
+        <NavLink to="/transaction-form" onClick={handleMenuBar}>
+          <li className="list-none cursor-pointer px-3 py-2 rounded-xl border border-black mt-4 hover:bg-blue-500">
+            Transaction Forms
+          </li>
+        </NavLink>
+        <NavLink to="/accountOverview" onClick={handleMenuBar}>
+          <li className="list-none cursor-pointer px-3 py-2 rounded-xl border border-black mt-4 hover:bg-blue-500">
+            Account Overview
+          </li>
+        </NavLink>
+        <NavLink to="/transaction-history" onClick={handleMenuBar}>
+          <li className="list-none cursor-pointer px-3 py-2 rounded-xl border border-black mt-4 hover:bg-blue-500">
+            Transaction History
+          </li>
+        </NavLink>
       </nav>
     </>
   );

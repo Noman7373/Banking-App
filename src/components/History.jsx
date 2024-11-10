@@ -71,7 +71,7 @@ const History = () => {
                       ? "bg-red-500 p-2 flex justify-between items-center"
                       : transaction.transactionTypes == "Deposite"
                       ? "p-2 bg-green-500 flex justify-between items-center"
-                      : "p-2 bg-gray-600 flex justify-between items-center"
+                      : "p-2 bg-gray-300 flex justify-between items-center"
                   } `}
                 >
                   <span>{transaction.id}</span>
