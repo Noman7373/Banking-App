@@ -30,9 +30,16 @@ const TransactionForm = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log(formValues, "formValues");
-    dispatch(submitTransaction(formValues));
-    navigate("/");
+    if (formValues.amount > 0) {
+      dispatch(submitTransaction(formValues));
+      if (formValues.transactionTypes === "Deposite") {
+        navigate("/");
+      } else if (formValues.transactionTypes === "Withdrawal") {
+        navigate("/withdraw-history");
+      } else {
+        navigate("/transfer-history");
+      }
+    }
   };
 
   return (
@@ -149,7 +156,7 @@ const TransactionForm = () => {
           <div className="flex justify-center">
             <button
               type="submit"
-              className="p-3 w-[10rem] rounded bg-blue-500  hover:bg-transparent hover:border-[1px] border-blue-500 "
+              className="p-3 rounded bg-blue-500 w-[10rem] hover:bg-transparent border-none outline-none hover:outline-2 hover:outline-blue-500"
             >
               Submit
             </button>

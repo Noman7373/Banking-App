@@ -4,6 +4,10 @@ import Dashboard from "./components/Dashboard";
 import TransactionForm from "./components/TransactionForm";
 import AccountOverview from "./components/AccountOverview";
 import History from "./components/History";
+import Deposite from "./components/Deposite";
+import TransactionsLayout from "./AppLayout/TransactionsLayout";
+import Withdraw from "./components/Withdraw";
+import Transfer from "./components/Transfer";
 
 function App() {
   const router = createBrowserRouter([
@@ -13,19 +17,34 @@ function App() {
       children: [
         {
           path: "/", // Set the default path for Dashboard
-          element: <Dashboard />,
+          element: <TransactionsLayout />,
+          children: [
+            {
+              path: "/",
+              element: <Deposite />,
+            },
+            {
+              path: "withdraw-history",
+              element: <Withdraw />,
+            },
+            {
+              path: "transfer-history",
+              element: <Transfer />,
+            },
+          ],
         },
         {
           path: "/transaction-form",
           element: <TransactionForm />,
         },
-        {
-          path: "/accountOverview",
-          element: <AccountOverview />,
-        },
+
         {
           path: "/transaction-history",
           element: <History />,
+        },
+        {
+          path: "/accountOverview",
+          element: <AccountOverview />,
         },
       ],
     },
