@@ -6,7 +6,7 @@ export default {
     extend: {
       screens: {
         // Custom breakpoints
-        xs: "380px", // Extra small devices (phones)
+        xs: "350px", // Extra small devices (phones)
         sm: "600px", // Small devices (tablets, etc.)
         md: "800px", // Medium devices
         lg: "1024px", // Large devices

@@ -134,7 +134,7 @@ const TransactionForm = () => {
               />
             </div>
           </div>
-          <div className="flex flex-col gap-1">
+          <div className="flex flex-col gap-1 px-1">
             <label className="flex items-center gap-2" htmlFor="description">
               {" "}
               <span>

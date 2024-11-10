@@ -21,7 +21,7 @@ const History = () => {
       );
     }
     setTransferHistory(sortedTransactions);
-  }, [transactionAllHistory, sortInput]); // Re-run this effect when either the transactions or sort input changes
+  }, [transactionAllHistory, sortInput]);
 
   const handleChange = (event) => {
     setSortInput(event.target.value);
@@ -36,7 +36,7 @@ const History = () => {
         <h1 className="text-[1.5rem] flex justify-center items-center mt-4">
           All Transactions Table
         </h1>
-        <form className="flex gap-2 justify-between items-center">
+        <form className="flex gap-2 justify-between items-center sm:flex-col xs:flex-col md:flex-row">
           <label htmlFor="sort-by-date" className="text-lg font-medium">
             Sort By Date:
           </label>
@@ -82,7 +82,7 @@ const History = () => {
                     {transaction.currency}
                   </span>
 
-                  <span>{transaction.Description}</span>
+                  <span>{transaction.Description.slice(0, 8)}</span>
                 </li>
               ))}
             </ol>
