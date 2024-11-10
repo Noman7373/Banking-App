@@ -28,6 +28,7 @@ const storeSlice = createSlice({
         console.error("Error saving to localStorage:", error);
       }
     },
+    
   },
 });
 
